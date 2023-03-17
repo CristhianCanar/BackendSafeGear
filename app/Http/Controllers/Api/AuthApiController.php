@@ -69,7 +69,7 @@ class AuthApiController extends Controller
                 return response()->json(['message' => 'Credenciales inválidas', "status" => "invalid"],400);
             }
         } catch (JWTException $e) {
-            return response()->json(['message' => 'Error en servidor'], 500);
+            return response()->json(['message' => 'Error en servidor: '.$e->getMessage()], 500);
         }
         $user_bd = auth()->user();
         return response()->json([ 'id_user'         => $user_bd->id,
