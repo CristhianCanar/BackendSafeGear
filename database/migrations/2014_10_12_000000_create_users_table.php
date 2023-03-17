@@ -15,8 +15,8 @@ class CreateUsersTable extends Migration
             $table->string('apellido', 100)->nullable();
             $table->string('telefono', 100)->nullable();
             $table->string('identificacion', 100)->nullable();
-            $table->string('correo')->unique();
-            $table->string('contrasenia', 100);
+            $table->string('email')->unique();
+            $table->string('password');
             $table->timestamps();
             $table->foreign('rol_id')
             ->references('id')
