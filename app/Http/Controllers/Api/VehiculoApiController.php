@@ -29,13 +29,12 @@ class VehiculoApiController extends Controller
                 $vehiculo->modelo               = $request->modelo;
                 $vehiculo->color                = $request->color;
                 $vehiculo->cilindraje           = $request->cilindraje;
-
                 $vehiculo->fecha_inicio_SOAT    = (new Carbon($request->fecha_inicio_SOAT))->format('d/m/y');
                 $vehiculo->fecha_fin_SOAT       = (new Carbon($request->fecha_fin_SOAT))->format('d/m/y');
                 $vehiculo->fecha_inicio_tecno   = (new Carbon($request->fecha_inicio_tecno))->format('d/m/y');
                 $vehiculo->fecha_fin_tecno      = (new Carbon($request->fecha_fin_tecno))->format('d/m/y');
                 $vehiculo->save();
-                return response()->json($vehiculo, 201);
+                return response()->json(['id' => $vehiculo->id, 'status' => 'success'], 201);
             } catch (Exception $e) {
                 return response()->json(['message' => 'Error en registro: '.$e->getMessage(), "status" => "invalid"], 500);
             }
