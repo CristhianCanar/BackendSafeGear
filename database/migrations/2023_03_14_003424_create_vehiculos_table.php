@@ -13,7 +13,7 @@ class CreateVehiculosTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('combustible_id')->unsigned();
             $table->bigInteger('clases_vehiculo_id')->unsigned();
-            $table->string('placa', 10);
+            $table->string('placa', 10)->unique();
             $table->string('marca', 100);
             $table->string('modelo', 50);
             $table->string('color', 50);
