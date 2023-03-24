@@ -21,8 +21,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Auth Module
-Route::post('login', [AuthApiController::class, 'signIn']);
-Route::post('register', [AuthApiController::class, 'userRegister']);
+Route::post('login'     , [AuthApiController::class, 'signIn'])->name('login');
+Route::post('register'  , [AuthApiController::class, 'userRegister']);
+Route::post('logout'    , [AuthApiController::class, 'logout'])->middleware(['auth:api']);
 
 // Vehicle Module
-Route::post('vehiculo', [VehiculoApiController::class, 'vehicleRegister'])/* ->middleware(['jwt']) */;
+Route::get('vehiculos/{userId}'     , [VehiculoApiController::class, 'getVehiclesByUserId'])/* ->middleware(['auth:api']) */;
+Route::get('vehiculo/{vehicleId}'   , [VehiculoApiController::class, 'getVehicleById'])/* ->middleware(['auth:api']) */;
+Route::post('vehiculo/update'       , [VehiculoApiController::class, 'updateVehicle'])/* ->middleware(['auth:api']) */;
+Route::post('vehiculo'              , [VehiculoApiController::class, 'storeVehicle'])/* ->middleware(['auth:api']) */;
+Route::delete('vehiculo/{vehicleId}', [VehiculoApiController::class, 'deleteVehicle'])/* ->middleware(['auth:api']) */;

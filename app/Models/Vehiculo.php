@@ -12,15 +12,15 @@ class Vehiculo extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     public function combustibles()
     {
-        return $this->belongsTo(Combustible::class, 'combustible_id');
+        return $this->belongsTo(Combustible::class, 'combustible_id', 'id');
     }
 
     public function clasesVehiculo()
     {
-        return $this->belongsTo(ClaseVehiculo::class, 'clase_vehiculo_id');
+        return $this->belongsTo(ClaseVehiculo::class, 'clases_vehiculo_id', 'id');
     }
 }
