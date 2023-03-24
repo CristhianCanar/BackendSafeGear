@@ -34,7 +34,7 @@ class VehiculoApiController extends Controller
     }
     public function updateVehicle(Request $request, int $vehicleId): JsonResponse
     {
-        $response = response()->json(['message' => 'Error en registro', "status" => "invalid"], 500);
+        $response = response()->json(['message' => 'Error en actualización de vehículo', "status" => "invalid"], 500);
         $vehiculo = Vehiculo::where('id', $vehicleId)->first();
         if ($vehiculo instanceof Vehiculo) {
             $claseVehiculo  = ClaseVehiculo::where('tipo', $request->clase_vehiculo)->first();
@@ -59,12 +59,12 @@ class VehiculoApiController extends Controller
                     ]);
 
                     if ($vehiculo) {
-                        $response = response()->json(['id' => $vehiculo->id, 'status' => 'success'], 201);
+                        $response = response()->json(['status' => 'success'], 201);
                     } elseif (!$vehiculo) {
                         $response = response()->json(['message' => 'Error actualizar vehículo', "status" => "invalid"], 500);
                     }
                 } catch (Exception $e) {
-                    $response = response()->json(['message' => 'Error en registro: ' . $e->getMessage(), "status" => "invalid"], 500);
+                    $response = response()->json(['message' => 'Error en actualizar: ' . $e->getMessage(), "status" => "invalid"], 500);
                 }
             }
         }

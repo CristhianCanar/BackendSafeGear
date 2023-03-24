@@ -26,8 +26,8 @@ Route::post('register'  , [AuthApiController::class, 'userRegister']);
 Route::post('logout'    , [AuthApiController::class, 'logout'])->middleware(['auth:api']);
 
 // Vehicle Module
-Route::get('vehiculos/{userId}'     , [VehiculoApiController::class, 'getVehiclesByUserId'])/* ->middleware(['auth:api']) */;
-Route::get('vehiculo/{vehicleId}'   , [VehiculoApiController::class, 'getVehicleById'])/* ->middleware(['auth:api']) */;
-Route::post('vehiculo/update'       , [VehiculoApiController::class, 'updateVehicle'])/* ->middleware(['auth:api']) */;
-Route::post('vehiculo'              , [VehiculoApiController::class, 'storeVehicle'])/* ->middleware(['auth:api']) */;
-Route::delete('vehiculo/{vehicleId}', [VehiculoApiController::class, 'deleteVehicle'])/* ->middleware(['auth:api']) */;
+Route::get('vehiculos/{userId}'             , [VehiculoApiController::class, 'getVehiclesByUserId'])/* ->middleware(['auth:api']) */;
+Route::get('vehiculo/{vehicleId}'           , [VehiculoApiController::class, 'getVehicleById'])/* ->middleware(['auth:api']) */;
+Route::post('vehiculo/update/{vehicleId}'   , [VehiculoApiController::class, 'updateVehicle'])/* ->middleware(['auth:api']) */;
+Route::post('vehiculo'                      , [VehiculoApiController::class, 'storeVehicle'])/* ->middleware(['auth:api']) */;
+Route::delete('vehiculo/{vehicleId}'        , [VehiculoApiController::class, 'deleteVehicle'])/* ->middleware(['auth:api']) */;
