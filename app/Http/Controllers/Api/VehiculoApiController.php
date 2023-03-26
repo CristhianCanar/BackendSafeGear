@@ -52,14 +52,14 @@ class VehiculoApiController extends Controller
                         'modelo'                => $request->modelo,
                         'color'                 => $request->color,
                         'cilindraje'            => $request->cilindraje,
-                        'fecha_inicio_SOAT'     => (new Carbon($request->fecha_inicio_SOAT))->format('d/m/y'),
-                        'fecha_fin_SOAT'        => (new Carbon($request->fecha_fin_SOAT))->format('d/m/y'),
-                        'fecha_inicio_tecno'    => (new Carbon($request->fecha_inicio_tecno))->format('d/m/y'),
-                        'fecha_fin_tecno'       => (new Carbon($request->fecha_fin_tecno))->format('d/m/y'),
+                        'fecha_inicio_SOAT'     => (new Carbon($request->fecha_inicio_SOAT))->format('Y-n-j'),
+                        'fecha_fin_SOAT'        => (new Carbon($request->fecha_fin_SOAT))->format('Y-n-j'),
+                        'fecha_inicio_tecno'    => (new Carbon($request->fecha_inicio_tecno))->format('Y-n-j'),
+                        'fecha_fin_tecno'       => (new Carbon($request->fecha_fin_tecno))->format('Y-n-j'),
                     ]);
 
                     if ($vehiculo) {
-                        $response = response()->json(['status' => 'success'], 201);
+                        $response = response()->json(['id' => $vehicleId, 'status' => 'success'], 201);
                     } elseif (!$vehiculo) {
                         $response = response()->json(['message' => 'Error actualizar vehículo', "status" => "invalid"], 500);
                     }
@@ -88,10 +88,11 @@ class VehiculoApiController extends Controller
                 $vehiculo->modelo               = $request->modelo;
                 $vehiculo->color                = $request->color;
                 $vehiculo->cilindraje           = $request->cilindraje;
-                $vehiculo->fecha_inicio_SOAT    = (new Carbon($request->fecha_inicio_SOAT))->format('d/m/y');
-                $vehiculo->fecha_fin_SOAT       = (new Carbon($request->fecha_fin_SOAT))->format('d/m/y');
-                $vehiculo->fecha_inicio_tecno   = (new Carbon($request->fecha_inicio_tecno))->format('d/m/y');
-                $vehiculo->fecha_fin_tecno      = (new Carbon($request->fecha_fin_tecno))->format('d/m/y');
+                // $vehiculo->fecha_inicio_SOAT    = (new Carbon($request->fecha_inicio_SOAT))->format('d/m/y');
+                $vehiculo->fecha_inicio_SOAT    = (new Carbon($request->fecha_inicio_SOAT))->format('Y-n-j');
+                $vehiculo->fecha_fin_SOAT       = (new Carbon($request->fecha_fin_SOAT))->format('Y-n-j');
+                $vehiculo->fecha_inicio_tecno   = (new Carbon($request->fecha_inicio_tecno))->format('Y-n-j');
+                $vehiculo->fecha_fin_tecno      = (new Carbon($request->fecha_fin_tecno))->format('Y-n-j');
                 $vehiculo->save();
                 return response()->json(['id' => $vehiculo->id, 'status' => 'success'], 201);
             } catch (Exception $e) {
@@ -107,7 +108,7 @@ class VehiculoApiController extends Controller
         try {
             $vehicleDeleted = Vehiculo::where('id', $vehicleId)->delete();
             if($vehicleDeleted){
-                $response = response()->json(['status' => 'success'], 410);
+                $response = response()->json(['status' => 'success'], 200);
             } elseif(!$vehicleDeleted){
                 $response = response()->json(['message' => 'No fue posible eliminar el vehículo', "status" => "invalid"], 400);
             }

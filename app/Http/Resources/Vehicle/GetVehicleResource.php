@@ -10,6 +10,7 @@ class GetVehicleResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'vehicle_id' => $this->id,
             'user_id' => $this->user_id,
             'clase_vehiculo' => $this->clasesVehiculo->tipo,
             'combustible' => $this->combustibles->tipo,
