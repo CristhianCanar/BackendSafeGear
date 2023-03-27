@@ -18,6 +18,7 @@ class CreateMantenimientosTable extends Migration
             $table->bigInteger('vehiculo_id')->unsigned();
             $table->string('titulo');
             $table->text('descripcion');
+            $table->text('url_foto')->nullable();
             $table->date('fecha');
             $table->string('nombre_mecanico');
             $table->double('precio');
