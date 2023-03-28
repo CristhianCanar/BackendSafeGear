@@ -38,4 +38,4 @@ Route::get('mantenimiento/{maintenanceId}'          , [MaintenanceApiController:
 Route::get('mantenimientos/{vehicleId}'             , [MaintenanceApiController::class, 'getMaintenancesByVehicleId'])/* ->middleware(['auth:api']) */;
 Route::post('mantenimiento'                         , [MaintenanceApiController::class, 'storeMaintenance'])/* ->middleware(['auth:api']) */;
 Route::post('mantenimiento/update/{maintenanceId}'  , [MaintenanceApiController::class, 'updateMaintenance'])/* ->middleware(['auth:api']) */;
-Route::delete('mantenimiento/{maintenanceId}'       , [MaintenanceApiController::class, 'deleteVehicle'])/* ->middleware(['auth:api']) */;
+Route::delete('mantenimiento/{maintenanceId}'       , [MaintenanceApiController::class, 'deleteMaintenance'])/* ->middleware(['auth:api']) */;

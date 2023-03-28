@@ -26,7 +26,7 @@ class MaintenanceApiController extends Controller
     {
         $response = response()->json(['message' => "No se encontraron mantenimientos para vehículo con id = $vehicleId" , 'status' => 'void'], 200);
         $maintenances = Mantenimiento::where('vehiculo_id', $vehicleId)->get();
-        if(!$maintenances)
+        if(count($maintenances))
         {
             $response = response()->json(GetMaintenanceResource::collection($maintenances), 200);
         }
@@ -37,7 +37,7 @@ class MaintenanceApiController extends Controller
     {
         try {
             $maintenance = new Mantenimiento();
-            $maintenance->vehiculo_id         = $request->vehicleId;
+            $maintenance->vehiculo_id         = $request->vehiculo_id;
             $maintenance->titulo              = $request->titulo;
             $maintenance->descripcion         = $request->descripcion;
             $maintenance->url_foto            = $request->url_foto;
@@ -64,6 +64,7 @@ class MaintenanceApiController extends Controller
                     'url_foto'            => $request->url_foto,
                     'fecha'               => $request->fecha,
                     'nombre_mecanico'     => $request->nombre_mecanico,
+                    'precio'              => $request->precio,
                 ]);
 
                 if ($maintenanceUpdated) {

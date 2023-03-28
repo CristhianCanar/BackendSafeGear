@@ -16,7 +16,8 @@ class GetMaintenanceResource extends JsonResource
             'url_foto'          => $this->url_foto,
             'fecha'             => $this->fecha,
             'nombre_mecanico'   => $this->nombre_mecanico,
-            'precio'            => number_format(floatval($this->precio), 2,',','.'),
+            // 'precio'         => number_format(floatval($this->precio), 2,',','.'),
+            'precio'            => floatval($this->precio),
         ];
     }
 }
