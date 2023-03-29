@@ -36,6 +36,7 @@ class AuthApiController extends Controller
         }
         return response()->json(['message' => 'Error en registro', "status" => "invalid"], 500);
     }
+
     public function signIn(Request $request)
     {
         $credentials = ['email' => $request['correo'], 'password' => $request['contrasenia']];

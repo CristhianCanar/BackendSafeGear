@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Api\MaintenanceApiController;
 use App\Http\Controllers\Api\VehiculoApiController;
 use Illuminate\Http\Request;
@@ -25,6 +26,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login'     , [AuthApiController::class, 'signIn'])->name('login');
 Route::post('register'  , [AuthApiController::class, 'userRegister']);
 Route::post('logout'    , [AuthApiController::class, 'logout'])->middleware(['auth:api']);
+
+//User Module
+//Route::post('usuario'                       , [UserApiController::class, 'storeUser'])/* ->middleware(['auth:api']) */;
+Route::get('usuario/{userId}'               , [UserApiController::class, 'getUserById'])/* ->middleware(['auth:api']) */;
+Route::post('usuario/update/{userId}'       , [UserApiController::class, 'updateUser'])/* ->middleware(['auth:api']) */;
+Route::delete('usuario/{userId}'            , [UserApiController::class, 'deleteUser'])/* ->middleware(['auth:api']) */;
 
 // Vehicle Module
 Route::get('vehiculo/{vehicleId}'           , [VehiculoApiController::class, 'getVehicleById'])/* ->middleware(['auth:api']) */;

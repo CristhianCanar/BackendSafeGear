@@ -13,11 +13,12 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
-    protected $guarded = [];
+    //protected $guarded = [];
+    protected $table = "users";
 
     public function roles()
     {
-        return $this->belongsTo(Rol::class, 'rol_id');
+        return $this->belongsTo(Rol::class, 'rol_id','id');
     }
 
     public function getJWTIdentifier()
