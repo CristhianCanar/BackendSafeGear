@@ -28,29 +28,22 @@ class UserApiController extends Controller
         $usuario = User::where('id', $userId)->first();
 
         if ($usuario instanceof User) {
-            $rol  = Rol::where('rol', $request->rol_id)->first();
-            print $rol;
-            if ($rol instanceof Rol)
-             {
-                try {
-                    $usuario = User::where('id', $usuario->id)->update([
-                        'rol_id'                 => $rol->id,
-                        'nombre'                 => $request->nombre,
-                        'apellido'               => $request->apellido,
-                        'telefono'               => $request->telefono,
-                        'identificacion'         => $request->identificacion,
-                        'email'                  => $request->correo,
-                        'password'               => $request->contrasenia
-                        ]);
+            try {
+                $usuario = User::where('id', $usuario->id)->update([
+                    'nombre'         => $request->nombre,
+                    'apellido'       => $request->apellido,
+                    'telefono'       => $request->telefono,
+                    'identificacion' => $request->identificacion,
+                    'email'          => $request->correo
+                ]);
 
-                    if ($usuario) {
-                        $response = response()->json(['id' => $userId, 'status' => 'success'], 201);
-                    } elseif (!$usuario) {
-                        $response = response()->json(['message' => 'Error actualizar usuario', "status" => "invalid"], 500);
-                    }
-                } catch (Exception $e) {
-                    $response = response()->json(['message' => 'Error en actualizar: ' . $e->getMessage(), "status" => "invalid"], 500);
+                if ($usuario) {
+                    $response = response()->json(['id' => $userId, 'status' => 'success'], 201);
+                } elseif (!$usuario) {
+                    $response = response()->json(['message' => 'Error actualizar usuario', "status" => "invalid"], 500);
                 }
+            } catch (Exception $e) {
+                $response = response()->json(['message' => 'Error en actualizar: ' . $e->getMessage(), "status" => "invalid"], 500);
             }
         }
 
