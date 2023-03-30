@@ -10,6 +10,7 @@ class GetMaintenanceResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'maintenance_id'    => $this->id,
             'vehiculo_id'       => $this->vehiculo_id,
             'titulo'            => $this->titulo,
             'descripcion'       => $this->descripcion,
